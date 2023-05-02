@@ -1,24 +1,40 @@
 import logo from './logo.svg';
 import './App.css';
-
+import * as React from 'react';
+import { PolybaseProvider, AuthProvider } from '@polybase/react';
+import { Polybase } from '@polybase/client';
+import { Auth } from '@polybase/auth';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Logo from './Pages/Logo';
+import LandingPage from './Pages/LandingPage';
+import Input from './Pages/Input';
+import BAuth from './Biconomy/Auth';
+const polybase = new Polybase();
+const auth = new Auth();
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <PolybaseProvider polybase={polybase}>
+      <AuthProvider
+        auth={auth}
+        polybase={polybase}>
+        <Router>
+          <Routes>
+            <Route
+              path="/"
+              element={<LandingPage pageContents={Logo} />}
+            />
+            <Route
+              path="/Input"
+              element={<LandingPage pageContents={Input} />}
+            />
+            <Route
+              path="/Biconomy"
+              element={<LandingPage pageContents={BAuth} />}
+            />
+          </Routes>
+        </Router>
+      </AuthProvider>
+    </PolybaseProvider>
   );
 }
 
