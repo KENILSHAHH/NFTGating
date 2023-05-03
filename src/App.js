@@ -14,6 +14,8 @@ import BAuth from './Biconomy/Auth';
 import { WagmiConfig, createClient } from 'wagmi';
 import { getDefaultClient, ConnectKitProvider } from 'connectkit';
 import NFTCard from './Components/NFTCard';
+import Chat from './Pages/Chat';
+import RegisterUser from './Pages/RegisterUser';
 
 const client = createClient(
   getDefaultClient({
@@ -37,14 +39,22 @@ function App() {
               path="/"
               element={<LandingPage pageContents={Logo} />}
             />
-            <Route
+            {/* <Route
               path="/Input"
               element={<LandingPage pageContents={Input} />}
-            />
+            /> */}
             <Route
               path="/NFTCard"
               element={<LandingPage pageContents={NFTCard} />}
             />
+            <Route
+              path="/Chat"
+              element={<LandingPage pageContents={Chat} />}
+            />
+            {/* <Route
+              path="/Register"
+              element={<LandingPage pageContents={RegisterUser} />}
+            /> */}
           </Routes>
         </Router>
       </AuthProvider>

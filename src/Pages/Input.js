@@ -6,9 +6,11 @@ import { secp256k1 } from '@polybase/util';
 import { Polybase } from '@polybase/client';
 import { ethPersonalSign } from '@polybase/eth';
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
+
+
 const db = new Polybase({
   defaultNamespace:
-    'pk/0x203023a6ef70058f761c78526d8411d97cc6d47c8c23a3ad75784c52aa7172a389d758998df9c4e9be7fe9da9d0a2144794d245683690eba505f7057eafaaadb/Dappthon',
+    'pk/0x897b08efcd46e4843eb6041fd0ab956864d942bdeb6bcc4fbbef326ca9c2f03b906b3441d5f95b4cdeb475982fb795b97c19b6e363c2edb19b7f6dc5d48cfa2c/Huddle Chat',
 });
 
 const cref = db.collection('Final');
