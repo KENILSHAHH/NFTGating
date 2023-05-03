@@ -1,3 +1,5 @@
+/** @format */
+
 import logo from './logo.svg';
 import './App.css';
 import * as React from 'react';
@@ -9,10 +11,22 @@ import Logo from './Pages/Logo';
 import LandingPage from './Pages/LandingPage';
 import Input from './Pages/Input';
 import BAuth from './Biconomy/Auth';
+import { WagmiConfig, createClient } from 'wagmi';
+import { getDefaultClient, ConnectKitProvider } from 'connectkit';
+import NFTCard from './Components/NFTCard';
+
+const client = createClient(
+  getDefaultClient({
+    autoConnect: true,
+    appName: 'Huddle01-Token-Gating',
+  })
+);
 const polybase = new Polybase();
 const auth = new Auth();
 function App() {
   return (
+    // <WagmiConfig client={client}>
+    //   <ConnectKitProvider>
     <PolybaseProvider polybase={polybase}>
       <AuthProvider
         auth={auth}
@@ -28,13 +42,15 @@ function App() {
               element={<LandingPage pageContents={Input} />}
             />
             <Route
-              path="/Biconomy"
-              element={<LandingPage pageContents={BAuth} />}
+              path="/NFTCard"
+              element={<LandingPage pageContents={NFTCard} />}
             />
           </Routes>
         </Router>
       </AuthProvider>
     </PolybaseProvider>
+    //   </ConnectKitProvider>
+    // </WagmiConfig>
   );
 }
 

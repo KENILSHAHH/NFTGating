@@ -5,26 +5,48 @@ import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useAuth } from '@polybase/react';
 import { useIsAuthenticated } from '@polybase/react';
-
+// import { ConnectKitButton } from 'connectkit';
+import { useAccount, useSignMessage } from 'wagmi';
+import { getAccessToken, getMessage } from '@huddle01/auth';
+import { useHuddle01 } from '@huddle01/react';
+import { useLobby, useRoom, useMeetingMachine } from '@huddle01/react/hooks';
+import { useEffect } from 'react';
+import teams from '../Assets/teams.svg';
 const navigation = [
-  { name: 'Input', href: '/Input' },
-  { name: 'Features', href: '/Biconomy' },
-  { name: 'Marketplace', href: '#' },
-  { name: 'Company', href: '#' },
+  { name: 'Add Contacts', href: '/Input' },
+  { name: 'Get Access to Video Call', href: '/NFTCard' },
+  { name: 'Start Chatting', href: '/Chat' },
 ];
-// async function getPublicKey() {
-//   const msg = 'Login with Chat';
-//   const sig = await auth.ethPersonalSign(msg);
-//   const publicKey = ethPersonalSignRecoverPublicKey(sig, msg);
-//   return '0x' + publicKey.slice(4);
-// }
 
 export default function LandingPage({ pageContents: Content }) {
-  
-  const { auth, state, loading } = useAuth();
-  const [isLoggedIn] = useIsAuthenticated();
+  const { initialize, isInitialized } = useHuddle01();
+  // const { joinRoom, leaveRoom, isLoading, isRoomJoined, error } = useRoom();
+  // const { joinLobby } = useLobby();
 
+  const { auth, loading } = useAuth();
+  const [isLoggedIn] = useIsAuthenticated();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [accessToken, setAccessToken] = useState('');
+  const { state } = useMeetingMachine();
+  // useEffect(() => {
+  //   initialize('KL1r3E1yHfcrRbXsT4mcE-3mK60Yc3YR');
+  // }, []);
+
+  // const { signMessage } = useSignMessage({
+  //   onSuccess: async (data) => {
+  //     const token = await getAccessToken(data, address);
+  //     setAccessToken(token.accessToken);
+  //     console.log(accessToken);
+  //     await joinLobby('szk-kodo-hne');
+  //     console.log(JSON.stringify(state.value));
+  //     isRoomJoined ? console.log('khsdf') : console.log('no');
+  //   },
+  // });
+  // async function joinRoomm() {
+  //   console.log('final');
+  //   await joinRoom;
+  //   console.log(isRoomJoined);
+  // }
 
   return (
     <div className="bg-white">
@@ -32,18 +54,18 @@ export default function LandingPage({ pageContents: Content }) {
         <nav
           className="flex items-center justify-between p-6 lg:px-8"
           aria-label="Global">
-          <div className="flex lg:flex-1">
-            <a
-              href="#"
-              className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
-              />
-            </a>
+          <div
+            className="flex lg:flex-1"
+            style={{ height: '75px' }}>
+            <img src={teams} />
           </div>
+          {/* <div className="flex lg:flex-1">
+            <button
+              disabled={!joinRoom.isCallable}
+              onClick={joinRoomm}>
+              JOIN_ROOM
+            </button>
+          </div> */}
           <div className="flex lg:hidden">
             <button
               type="button"
@@ -153,7 +175,7 @@ export default function LandingPage({ pageContents: Content }) {
           className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
           aria-hidden="true">
           <div
-            className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+            className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#000dff] to-[#00b7ff] opacity-70 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
             style={{
               clipPath:
                 'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
@@ -165,7 +187,7 @@ export default function LandingPage({ pageContents: Content }) {
           className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
           aria-hidden="true">
           <div
-            className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+            className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#2b00ff] to-[#00bfff] opacity-70 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
             style={{
               clipPath:
                 'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',

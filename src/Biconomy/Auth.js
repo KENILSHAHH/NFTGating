@@ -3,9 +3,9 @@
 import SocialLogin from '@biconomy/web3-auth';
 import '@biconomy/web3-auth/dist/src/style.css';
 import React from 'react';
-import ethers from 'ethers';
+const ethers = require('ethers');
 const socialLogin = new SocialLogin();
- socialLogin.init();
+socialLogin.init();
 function BAuth() {
   async function showWallett() {
     socialLogin.showWallet();
@@ -20,7 +20,12 @@ function BAuth() {
   return (
     <>
       {' '}
-      <button onClick={showWallett} style={{margin:"250px"}}> Open </button>{' '}
+      <button
+        onClick={showWallett}
+        style={{ margin: '250px' }}>
+        {' '}
+        Open{' '}
+      </button>{' '}
     </>
   );
 }

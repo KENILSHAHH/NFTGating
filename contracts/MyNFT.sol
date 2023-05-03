@@ -8,7 +8,7 @@ contract MyNFT is ERC721 {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
-    constructor() ERC721("DecentMusic", "DM") {}
+    constructor() ERC721("DecentralizedChat", "DC") {}
 
     function mint(address to) public returns (uint256) {
         _tokenIds.increment();
@@ -24,6 +24,7 @@ contract MyNFT is ERC721 {
         require(_isApprovedOrOwner(msg.sender, tokenId), "ERC721: transfer caller is not owner nor approved");
         _transfer(msg.sender, to, tokenId);
     }
+    
 
    
 }
