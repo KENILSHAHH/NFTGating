@@ -41,7 +41,7 @@ function Logo() {
       <div className="hidden sm:mb-8 sm:flex sm:justify-center"></div>
       <div className="text-center">
         <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-          Huddle Chat
+          WhatsDapp !
         </h1>
         <h3
           style={{ marginTop: '40px', fontSize: '40px' }}
@@ -63,7 +63,7 @@ function Logo() {
               data-modal-toggle="authentication-modal"
               onClick={makeTrue}
               type="button">
-              Toggle modal
+              Register User ->
             </button>
 
             {/* <div
