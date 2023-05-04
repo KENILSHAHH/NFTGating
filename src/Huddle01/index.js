@@ -1,18 +1,35 @@
-import React from 'react'
-import { useHuddle01 } from '@huddle01/react';
-import { useEffect } from 'react';
- import { useLobby } from '@huddle01/react/hooks';
-function Index() {
-      const { joinLobby } = useLobby();
-    const { initialize, isInitialized } = useHuddle01();
-    useEffect(() => {
-      //api key VwTZ4AGTxme9snANex9tep3NwvVMGfYd
-      // its preferable to use env vars to store projectId
-      initialize('KL1r3E1yHfcrRbXsT4mcE-3mK60Yc3YR');
-    }, []);
-  return (
-    <div>Index</div>
-  )
-}
+/** @format */
 
-export default Index
+import { getMessage } from '@huddle01/auth';
+import { useAccount, useSignMessage } from 'wagmi';
+import { getAccessToken } from '@huddle01/auth';
+import { useState } from 'react';
+import { ConnectKitButton } from 'connectkit';
+const address = '0x9f765ac659C20B4586490d72A7866B7F69B2be98'; // address of the user
+
+const message = getMessage(address); // message to sign
+export const Appp = () => {
+  const [accessToken, setAccessToken] = useState('');
+
+  const { signMessage } = useSignMessage({
+    onSuccess: async (data) => {
+      const token = await getAccessToken(data, address);
+      setAccessToken(token.accessToken);
+      console.log(accessToken);
+    },
+  });
+
+  return (
+    <div style={{ margin: '100px', padding: '100px' }}>
+ 
+      <button
+        style={{ margin: '100px', padding: '100px' }}
+        onClick={async () => {
+          const msg = await getMessage(address);
+          signMessage({ message: msg.message });
+        }}>
+        Sign Message
+      </button>
+    </div>
+  );
+};

@@ -16,6 +16,8 @@ import { getDefaultClient, ConnectKitProvider } from 'connectkit';
 import NFTCard from './Components/NFTCard';
 import Chat from './Pages/Chat';
 import RegisterUser from './Pages/RegisterUser';
+import { Appp } from './Huddle01';
+import IFrame from './Huddle01/IFrame';
 
 const client = createClient(
   getDefaultClient({
@@ -27,40 +29,48 @@ const polybase = new Polybase();
 const auth = new Auth();
 function App() {
   return (
-    // <WagmiConfig client={client}>
-    //   <ConnectKitProvider>
-    <PolybaseProvider polybase={polybase}>
-      <AuthProvider
-        auth={auth}
-        polybase={polybase}>
-        <Router>
-          <Routes>
-            <Route
-              path="/"
-              element={<LandingPage pageContents={Logo} />}
-            />
-            {/* <Route
+    <WagmiConfig client={client}>
+      <ConnectKitProvider>
+        <PolybaseProvider polybase={polybase}>
+          <AuthProvider
+            auth={auth}
+            polybase={polybase}>
+            <Router>
+              <Routes>
+                <Route
+                  path="/"
+                  element={<LandingPage pageContents={Logo} />}
+                />
+                {/* <Route
               path="/Input"
               element={<LandingPage pageContents={Input} />}
             /> */}
-            <Route
-              path="/NFTCard"
-              element={<LandingPage pageContents={NFTCard} />}
-            />
-            <Route
-              path="/Chatt"
-              element={<LandingPage pageContents={Chat} />}
-            />
-            {/* <Route
+                <Route
+                  path="/NFTCard"
+                  element={<LandingPage pageContents={NFTCard} />}
+                />
+                <Route
+                  path="/Chat"
+                  element={<LandingPage pageContents={Chat} />}
+                />
+                <Route
+                  path="/Appp"
+                  element={<LandingPage pageContents={Appp} />}
+                />
+                <Route
+                  path="/IFrame"
+                  element={<LandingPage pageContents={IFrame} />}
+                />
+                {/* <Route
               path="/Register"
               element={<LandingPage pageContents={RegisterUser} />}
             /> */}
-          </Routes>
-        </Router>
-      </AuthProvider>
-    </PolybaseProvider>
-    //   </ConnectKitProvider>
-    // </WagmiConfig>
+              </Routes>
+            </Router>
+          </AuthProvider>
+        </PolybaseProvider>
+      </ConnectKitProvider>
+    </WagmiConfig>
   );
 }
 

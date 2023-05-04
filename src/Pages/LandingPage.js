@@ -48,7 +48,6 @@ export default function LandingPage({ pageContents: Content }) {
   //   console.log(isRoomJoined);
   // }
 
-
   return (
     <div className="bg-white">
       <header className="absolute inset-x-0 top-0 z-50">
