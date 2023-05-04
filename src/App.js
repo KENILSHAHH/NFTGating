@@ -48,7 +48,7 @@ function App() {
               element={<LandingPage pageContents={NFTCard} />}
             />
             <Route
-              path="/Chat"
+              path="/Chatt"
               element={<LandingPage pageContents={Chat} />}
             />
             {/* <Route

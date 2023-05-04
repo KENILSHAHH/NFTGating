@@ -21,12 +21,16 @@ function Logo() {
   const cancelButtonRef = useRef(null);
   const [formInput, setFormInput] = useState({ name: '', address: '' });
   const handleSubmit = async (event) => {
+    event.preventDefault();
     const registered = await dbref.create([
-      '10',
-      formInput.name,
+      '2',
+
       formInput.address,
+      formInput.name,
     ]);
     console.log('done');
+    setFormInput({ name: '', address: '' });
+    setOpen(false);
   };
 
   const handleChange = (event) => {

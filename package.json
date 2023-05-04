@@ -9,6 +9,7 @@
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.17",
     "@huddle01/auth": "^0.0.1",
+    "@huddle01/huddle01-iframe": "^0.0.9",
     "@huddle01/react": "^0.0.10",
     "@lighthouse-web3/sdk": "^0.2.1",
     "@nomicfoundation/hardhat-toolbox": "^2.0.2",
