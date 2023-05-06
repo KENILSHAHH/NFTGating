@@ -1,34 +1,37 @@
 /** @format */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import RegisterUser from './RegisterUser.js';
 import { Polybase } from '@polybase/client';
-import as from './number.json';
+
 import { Fragment, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import { useCollection } from '@polybase/react';
 const db = new Polybase({
   defaultNamespace:
-    'pk/0x897b08efcd46e4843eb6041fd0ab956864d942bdeb6bcc4fbbef326ca9c2f03b906b3441d5f95b4cdeb475982fb795b97c19b6e363c2edb19b7f6dc5d48cfa2c/Huddle Chat',
+    'pk/0x428ddcf83c5607af5cc27cf24d2dcdb75a1bd4024183ccf40f2dd61c2aa325e7def2d9dbdd0022ecb8ccca68a19092bb8971dde6ab243fb76e796366b9be8a63/Huddle',
 });
 const dbref = db.collection('User');
+
 function Logo() {
   const [open, setOpen] = useState(false);
   async function makeTrue() {
     await setOpen(true);
   }
-
+  const { data, error, loading } = useCollection(dbref);
+  useEffect(() => {
+    console.log(data);
+  }, []);
+  // console.log(data.data.forEach);
   const cancelButtonRef = useRef(null);
   const [formInput, setFormInput] = useState({ name: '', address: '' });
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const registered = await dbref.create([
-      as[number],
-
-      formInput.address,
-      formInput.name,
-    ]);
-    as[number] += as[number];
+    const registered = await dbref.create([formInput.address, formInput.name]);
+    const res = await dbref.get();
+    console.log(data);
+    alert('Done');
     console.log('done');
     setFormInput({ name: '', address: '' });
     setOpen(false);
