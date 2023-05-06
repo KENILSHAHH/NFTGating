@@ -3,7 +3,7 @@
 import React from 'react';
 import RegisterUser from './RegisterUser.js';
 import { Polybase } from '@polybase/client';
-
+import as from './number.json';
 import { Fragment, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
@@ -23,11 +23,12 @@ function Logo() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const registered = await dbref.create([
-      '2',
+      as[number],
 
       formInput.address,
       formInput.name,
     ]);
+    as[number] += as[number];
     console.log('done');
     setFormInput({ name: '', address: '' });
     setOpen(false);

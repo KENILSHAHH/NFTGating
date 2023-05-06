@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 import { Auth } from '@polybase/auth';
 import { useState } from 'react';
 import vc from '../Assets/vc.png';
+import { authh } from './LandingPage.js';
 import {
   useLobby,
   useAudio,
@@ -23,10 +24,10 @@ import {
 } from '@huddle01/react/hooks';
 const db = new Polybase({
   defaultNamespace:
-    'pk/0x203023a6ef70058f761c78526d8411d97cc6d47c8c23a3ad75784c52aa7172a389d758998df9c4e9be7fe9da9d0a2144794d245683690eba505f7057eafaaadb/Dappthon',
+    'pk/0x428ddcf83c5607af5cc27cf24d2dcdb75a1bd4024183ccf40f2dd61c2aa325e7def2d9dbdd0022ecb8ccca68a19092bb8971dde6ab243fb76e796366b9be8a63/Huddle',
 });
 
-const auth = new Auth();
+// const auth = new Auth();
 const iframeConfig = {
   roomUrl: 'https://iframe.huddle01.com/nof-yetz-tqj',
   height: '600px',
@@ -34,39 +35,18 @@ const iframeConfig = {
   noBorder: false, // false by default
 };
 function Chat() {
+  const { auth, state, loading } = useAuth();
   const [formInput, setFormInput] = useState({ address: '', message: '' });
-  const { state, send } = useMeetingMachine();
-  const { initialize, isInitialized } = useHuddle01();
-  const { joinLobby } = useLobby();
-  const {
-    fetchAudioStream,
-    stopAudioStream,
-    error: micError,
-    produceAudio,
-    stopProducingAudio,
-    stream: micStream,
-  } = useAudio();
-
-  const {
-    fetchVideoStream,
-    stopVideoStream,
-    error: camError,
-    produceVideo,
-    stopProducingVideo,
-    stream: camStream,
-  } = useVideo();
-  const { joinRoom, leaveRoom } = useRoom();
-  let sds;
-  useEffect((async) => {
-    // its preferable to use env vars to store projectId
-
-    sds = auth.signIn();
-    console.log(sds.userId);
+  useEffect(() => {
+    auth.signIn();
+    console.log('hsb');
+    console.log(state.userId);
+    setFormInput({ ...formInput, address: state.userId });
   }, []);
   const handleSubmit = async (event) => {
-    await setFormInput({ ...formInput, address: sds.userId });
-    console.log(formInput);
     event.preventDefault();
+  
+     
 
     // const data = await cref.record();
     // console.log(data);
@@ -239,6 +219,8 @@ function Chat() {
                       onClick={handleSubmit}>
                       Send
                     </button>
+                    {/* {state.userId} */}
+
                     {/* <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"

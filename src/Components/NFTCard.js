@@ -413,7 +413,7 @@ export default function NFTCard() {
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(
-      '0xA923FfCD26F13F3eC0eb9b5792403B919313Eb39',
+      '0xfCcb533757A22520ec51F161Ae59B4a4be5b1493',
       abi,
       signer
     );

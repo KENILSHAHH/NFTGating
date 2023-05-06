@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Polybase } from '@polybase/client';
 const db = new Polybase({
   defaultNamespace:
-    'pk/0x203023a6ef70058f761c78526d8411d97cc6d47c8c23a3ad75784c52aa7172a389d758998df9c4e9be7fe9da9d0a2144794d245683690eba505f7057eafaaadb/Dappthon',
+    'pk/0x428ddcf83c5607af5cc27cf24d2dcdb75a1bd4024183ccf40f2dd61c2aa325e7def2d9dbdd0022ecb8ccca68a19092bb8971dde6ab243fb76e796366b9be8a63/Huddle',
 });
 function RegisterUser() {
   const [formInput, setFormInput] = useState({ name: '', address: '' });

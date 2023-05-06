@@ -29,8 +29,8 @@ const polybase = new Polybase();
 const auth = new Auth();
 function App() {
   return (
-    <WagmiConfig client={client}>
-      <ConnectKitProvider>
+    // <WagmiConfig client={client}>
+    //   <ConnectKitProvider>
         <PolybaseProvider polybase={polybase}>
           <AuthProvider
             auth={auth}
@@ -69,8 +69,8 @@ function App() {
             </Router>
           </AuthProvider>
         </PolybaseProvider>
-      </ConnectKitProvider>
-    </WagmiConfig>
+    //   </ConnectKitProvider>
+    // </WagmiConfig>
   );
 }
 

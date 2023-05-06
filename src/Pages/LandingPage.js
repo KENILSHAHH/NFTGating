@@ -12,26 +12,31 @@ import { useHuddle01 } from '@huddle01/react';
 import { useLobby, useRoom, useMeetingMachine } from '@huddle01/react/hooks';
 import { useEffect } from 'react';
 import teams from '../Assets/teams.svg';
+import { Auth } from '@polybase/auth';
 const navigation = [
   { name: 'Add Contacts', href: '/Input' },
   { name: 'Get Access to Video Call', href: '/NFTCard' },
   { name: 'Start Chatting', href: '/Chat' },
 ];
 
+export const authh = '';
 export default function LandingPage({ pageContents: Content }) {
   const { initialize, isInitialized } = useHuddle01();
   // const { joinRoom, leaveRoom, isLoading, isRoomJoined, error } = useRoom();
   // const { joinLobby } = useLobby();
 
-  const { auth, loading } = useAuth();
   const [isLoggedIn] = useIsAuthenticated();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [accessToken, setAccessToken] = useState('');
-  const { state } = useMeetingMachine();
+  const { auth, state, loading } = useAuth();
   // useEffect(() => {
   //   initialize('KL1r3E1yHfcrRbXsT4mcE-3mK60Yc3YR');
   // }, []);
+  async function signIn() {
+    const some = await auth.signIn();
 
+    console.log(state);
+  }
   // const { signMessage } = useSignMessage({
   //   onSuccess: async (data) => {
   //     const token = await getAccessToken(data, address);
@@ -92,14 +97,12 @@ export default function LandingPage({ pageContents: Content }) {
             {isLoggedIn ? (
               <button
                 onClick={() => auth.signOut()}
-                href="#"
                 className="text-sm font-semibold leading-6 text-gray-900">
                 Log out <span aria-hidden="true">&rarr;</span>
               </button>
             ) : (
               <button
-                onClick={() => auth.signIn()}
-                href="#"
+                onClick={signIn}
                 className="text-sm font-semibold leading-6 text-gray-900">
                 Log in <span aria-hidden="true">&rarr;</span>
               </button>
@@ -151,14 +154,12 @@ export default function LandingPage({ pageContents: Content }) {
                   {isLoggedIn ? (
                     <button
                       onClick={() => auth.signOut()}
-                      href="#"
                       className="text-sm font-semibold leading-6 text-gray-900">
                       Log out <span aria-hidden="true">&rarr;</span>
                     </button>
                   ) : (
                     <button
                       onClick={() => auth.signIn()}
-                      href="#"
                       className="text-sm font-semibold leading-6 text-gray-900">
                       Log in <span aria-hidden="true">&rarr;</span>
                     </button>
