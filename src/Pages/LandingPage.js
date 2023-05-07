@@ -14,7 +14,7 @@ import { useEffect } from 'react';
 import teams from '../Assets/teams.svg';
 import { Auth } from '@polybase/auth';
 const navigation = [
-  { name: 'Add Contacts', href: '/Input' },
+  { name: 'Add Contacts', href: '/RegisterUser' },
   { name: 'Get Access to Video Call', href: '/NFTCard' },
   { name: 'Start Chatting', href: '/Chat' },
 ];
