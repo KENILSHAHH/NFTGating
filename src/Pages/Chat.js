@@ -67,6 +67,7 @@ function Chat() {
       address,
       formInput.message,
     ]);
+
     alert('message sent');
     navigate('/Chat');
   };
