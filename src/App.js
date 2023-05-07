@@ -18,6 +18,7 @@ import Chat from './Pages/Chat';
 import RegisterUser from './Pages/RegisterUser';
 import { Appp } from './Huddle01';
 import IFrame from './Huddle01/IFrame';
+import MyComponent from './Pages/WhatsDapp';
 
 const client = createClient(
   getDefaultClient({
@@ -31,44 +32,48 @@ function App() {
   return (
     // <WagmiConfig client={client}>
     //   <ConnectKitProvider>
-        <PolybaseProvider polybase={polybase}>
-          <AuthProvider
-            auth={auth}
-            polybase={polybase}>
-            <Router>
-              <Routes>
-                <Route
-                  path="/"
-                  element={<LandingPage pageContents={Logo} />}
-                />
-                {/* <Route
+    <PolybaseProvider polybase={polybase}>
+      <AuthProvider
+        auth={auth}
+        polybase={polybase}>
+        <Router>
+          <Routes>
+            <Route
+              path="/"
+              element={<LandingPage pageContents={Logo} />}
+            />
+            {/* <Route
               path="/Input"
               element={<LandingPage pageContents={Input} />}
             /> */}
-                <Route
-                  path="/NFTCard"
-                  element={<LandingPage pageContents={NFTCard} />}
-                />
-                <Route
-                  path="/Chat"
-                  element={<LandingPage pageContents={Chat} />}
-                />
-                <Route
-                  path="/Appp"
-                  element={<LandingPage pageContents={Appp} />}
-                />
-                <Route
-                  path="/IFrame"
-                  element={<LandingPage pageContents={IFrame} />}
-                />
-                {/* <Route
+            <Route
+              path="/NFTCard"
+              element={<LandingPage pageContents={NFTCard} />}
+            />
+            <Route
+              path="/Chat"
+              element={<LandingPage pageContents={Chat} />}
+            />
+            <Route
+              path="/Appp"
+              element={<LandingPage pageContents={Appp} />}
+            />
+            <Route
+              path="/IFrame"
+              element={<LandingPage pageContents={IFrame} />}
+            />
+            <Route
+              path="/Whatsapp"
+              element={<LandingPage pageContents={MyComponent} />}
+            />
+            {/* <Route
               path="/Register"
               element={<LandingPage pageContents={RegisterUser} />}
             /> */}
-              </Routes>
-            </Router>
-          </AuthProvider>
-        </PolybaseProvider>
+          </Routes>
+        </Router>
+      </AuthProvider>
+    </PolybaseProvider>
     //   </ConnectKitProvider>
     // </WagmiConfig>
   );
